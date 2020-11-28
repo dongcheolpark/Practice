@@ -21,3 +21,4 @@ C:\Users\head0\OneDrive\바탕 화면\programing\Practice\c#\monogame\test1\obj\
 C:\Users\head0\OneDrive\바탕 화면\programing\Practice\c#\monogame\test1\obj\Debug\netcoreapp3.1\test1.dll
 C:\Users\head0\OneDrive\바탕 화면\programing\Practice\c#\monogame\test1\obj\Debug\netcoreapp3.1\test1.pdb
 C:\Users\head0\OneDrive\바탕 화면\programing\Practice\c#\monogame\test1\obj\Debug\netcoreapp3.1\test1.genruntimeconfig.cache
+C:\Users\head0\OneDrive\바탕 화면\programing\Practice\c#\monogame\test1\bin\Debug\netcoreapp3.1\Content\ball.xnb
