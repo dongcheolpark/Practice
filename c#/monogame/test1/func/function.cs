@@ -10,7 +10,7 @@ namespace test1.func
 {
     public class Function
     {
-        private List<GObject> GObjects = new List<GObject>();
+        public List<GObject> GObjects = new List<GObject>(); // must fix to private
         private int WindowHeight;
 
         public Function(int w)
