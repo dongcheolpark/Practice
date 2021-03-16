@@ -2,7 +2,7 @@
 
 #define MAX_SIZE 1000000
 
-int arr[MAX_SIZE]
+int arr[MAX_SIZE];
 
 void swap(int a,int b) {
 
@@ -21,8 +21,7 @@ int main()
     int n, n2;
     int arr[1000];
     scanf("%d", &n);
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         scanf("%d", arr + i);
     }
     
