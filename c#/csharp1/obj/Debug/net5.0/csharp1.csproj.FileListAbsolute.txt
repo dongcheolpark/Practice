@@ -1,0 +1,15 @@
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.csprojAssemblyReference.cache
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.AssemblyInfoInputs.cache
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.AssemblyInfo.cs
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.csproj.CoreCompileInputs.cache
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/csharp1.deps.json
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/csharp1.runtimeconfig.json
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/csharp1.runtimeconfig.dev.json
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/csharp1.dll
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/ref/csharp1.dll
+/Users/bagdongcheol/programming/practice/c#/csharp1/bin/Debug/net5.0/csharp1.pdb
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.dll
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/ref/csharp1.dll
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.pdb
+/Users/bagdongcheol/programming/practice/c#/csharp1/obj/Debug/net5.0/csharp1.genruntimeconfig.cache

@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <algorithm>
-#include <cstring>
 using namespace std;
 
 class pt{
@@ -9,9 +8,18 @@ class pt{
     int y;
 };
 
+bool compare(pt a,pt b) {
+    if(a.x == b.x) {
+        return a.y < b.y   
+    }
+}
+
 int main() {
-    char ch[21];
-    scanf("%s",ch);
-    sort(ch,ch+strlen(ch),greater<char>());
-    printf("%s",ch);
+    int n;
+    pt * arr[100000];
+    scanf("%d",&n);
+    for(int i = 0;i<n;i++){
+        arr[i] = new pt();
+        scanf("%d %d",arr[i]->x,arr[i]->y);
+    }
 }
