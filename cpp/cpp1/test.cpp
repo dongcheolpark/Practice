@@ -1,21 +1,9 @@
 #include <cstdio>
-
 int main()
 {
-    int n = 0,cnt[10000];
-    scanf("%d",&n);
-    for(int i = 0;i<10000;i++) {
-        cnt[i] = 0;
-    }
-    for(int i = 0; i<n;i++) {
-        int tmp = 0;
-        scanf("%d",&tmp);
-        cnt[tmp]++;
-    }
-    for(int i = 0;i<n;i++) {
-        for(int j = 0;j<cnt[i];j++) {
-            printf("%d ",i);
-        }
-    }
+    int num;
+    scanf("%d",&num);
+    int a = num/100,b = num/10%10,c = num%10;
+    printf("%d %d",(a>b)&&(a>c)? a : (b>a)&&(b>c) ? b : c,(a>b) ? ((a<c) ? a : (b>c) ? b: c) : ((b<c) ? b : (c>a) ? c : a));
     return 0;
 }
