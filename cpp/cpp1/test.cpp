@@ -1,9 +1,18 @@
-#include <cstdio>
-int main()
+
+#include <stdio.h>
+
+int main(void)
 {
     int num;
-    scanf("%d",&num);
-    int a = num/100,b = num/10%10,c = num%10;
-    printf("%d %d",(a>b)&&(a>c)? a : (b>a)&&(b>c) ? b : c,(a>b) ? ((a<c) ? a : (b>c) ? b: c) : ((b<c) ? b : (c>a) ? c : a));
+
+    printf("정수 입력:");
+    scanf("%d", &num);
+
+
+    printf("x>>3=%d\n",num>>3);
+    printf("x<<3=%d\n",num<<3);
+
     return 0;
+
+
 }
