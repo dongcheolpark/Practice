@@ -2,14 +2,16 @@
 
 #define MAX_SIZE 1000000
 
-int arr[MAX_SIZE]
+int arr[MAX_SIZE];
 
-void swap(int a,int b) {
-
+void swap(int * a,int * b) {
+	int tmp = *a;
+	int a = *b;
+	int b = tmp;
 }
 
 void partition(int left, int right) {
-
+	
 }
 
 void sort() {
