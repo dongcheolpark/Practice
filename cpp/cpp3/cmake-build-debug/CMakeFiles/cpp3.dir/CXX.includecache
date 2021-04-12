@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/bagdongcheol/programming/practice/cpp/cpp3/main.cpp
+cstdio
+-
+queue
+-
+vector
+-
+algorithm
+-
+cmath
+-
+
