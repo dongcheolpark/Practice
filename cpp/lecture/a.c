@@ -4,8 +4,8 @@
 
 
 int main() {
-    printf("%g\n",FLT_MIN);
-    printf("%g\n",FLT_MAX);
-    printf("%d\n",FLT_DIG);
+    printf("%Le\n",LDBL_MIN);
+    printf("%Le\n",LDBL_MAX);
+    printf("%d\n",LDBL_DIG);
     return 0;
 }
