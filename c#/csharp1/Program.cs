@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 namespace csharp1
 {
-    class ArmorSuite {
-        public virtual void initialize() {
-            Console.WriteLine("Armored");
+    interface a {
+        String tostring();
+    }
+    class _int : a {
+        public int data { get;set;}
+        public _int(int a = 10) {
+            data = a;
+        }
+        String a.tostring() {
+            return data.ToString();
         }
     }
-
-    class IronMan : ArmorSuite {
-        public override void initialize()
-        {
-            base.initialize();
-            Console.WriteLine("Repulsor Rays Armed");
+    class _float : a {
+        public double data {get;set;}
+        public _float(double a = 10) {
+            data = a;
         }
-    }
-    class WarMachine : ArmorSuite {
-        public override void initialize()
-        {
-            base.initialize();
-            Console.WriteLine("Double-Barral Cannons Armed");
-            Console.WriteLine("Micro-Rocket Launcher Armed");
+        String a.tostring() {
+            return data.ToString();
         }
     }
     class Program
     {
-        
         static void Main(string[] args)
         {
+            
             return;
         }
     }
