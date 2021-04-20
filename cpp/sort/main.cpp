@@ -13,7 +13,12 @@ int main() {
     case 1:
         selsort = new select();
         break;
-    
+    case 2:
+        selsort = new bubble();
+        break;
+    case 3:
+        selsort = new merge();
+        break;
     default:
         return 0;
     }

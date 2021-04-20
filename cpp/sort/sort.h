@@ -9,4 +9,12 @@ class select : public s {
     public:
         void sort(int * arr,int n);
 };
+class bubble : public s {
+    public:
+        void sort(int * arr,int n);
+};
+class merge : public s {
+    public:
+        void sort(int * arr,int n);
+};
 #endif

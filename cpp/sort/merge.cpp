@@ -1,7 +1,5 @@
-#include <iostream>
+#include "sort.h"
 
-using namespace std;
+void merge::sort(int *arr,int n) {
 
-int main() {
-    
 }
