@@ -37,7 +37,7 @@ char* compare_num(int a, int b) {
     else if((a == 0 && b == 2) || (a == 2 && b == 1) || (a == 1 && b == 0)) { //이김
         return "당신이 이겼습니다.";
     }
-    else return "당신이 졌습니다.";
+    else return "당신이 졌습니다.";//짐 
 }
 
 int main() {
@@ -46,7 +46,7 @@ int main() {
     while(1){
         printf("가위 바위 보를 선택하세요. : ");
         ch = getchar();
-        fflush(stdin);
+        while(getchar() != '\n');
         int num = ToInteger(ch);
         if(num == -1) continue;
         srand((unsigned int)time(NULL));
