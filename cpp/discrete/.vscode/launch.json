@@ -4,36 +4,17 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "gcc - 활성 파일 빌드 및 디버그",
             "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${fileDirname}",
             "environment": [],
-<<<<<<< HEAD
-<<<<<<< HEAD
             "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-=======
-            "externalConsole": true,
             "MIMode": "lldb",
-            "miDebuggerPath": "",
->>>>>>> 10349c1ea80f2c350f9d94d0cba1d9b38c2110f9
-=======
-            "externalConsole": true,
-            "MIMode": "lldb",
-            "miDebuggerPath": "",
-=======
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
->>>>>>> 475e969c864e7d0b7fb8edd0ec35265b78326040
->>>>>>> 85663ee66783d95c198d7164ea093c71ac6ebabb
             "preLaunchTask": "C/C++: gcc 활성 파일 빌드"
         }
     ]
