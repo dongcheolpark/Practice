@@ -9,14 +9,20 @@
             "name": "gcc - 활성 파일 빌드 및 디버그",
             "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
+<<<<<<< HEAD
             "externalConsole": true,
             "MIMode": "lldb",
             "miDebuggerPath": "",
+=======
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+>>>>>>> 475e969c864e7d0b7fb8edd0ec35265b78326040
             "preLaunchTask": "C/C++: gcc 활성 파일 빌드"
         }
     ]
