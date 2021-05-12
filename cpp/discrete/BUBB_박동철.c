@@ -61,7 +61,7 @@ void switch_str(char ** a,char ** b) { // swap strings
 int main() {
     printf("Bubble Sort (animals - mammals)\n");
     printf("--------------------------------\n");
-    sort(1);
+    sort(1);//ascending sort
     printf("[Ascending order] : ");
     for(int i = 0;i<n;i++) {
         if(i == 9) {
@@ -71,7 +71,7 @@ int main() {
         printf("%s-",sort_array[i]);
     }
     puts("");
-    sort(0);
+    sort(0);//descending sort
     printf("[Descending order] : ");
     for(int i = 0;i<n;i++) {
         if(i == 9) {

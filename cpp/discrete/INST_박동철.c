@@ -22,7 +22,7 @@ char *sort_array[10] = {
 void sort(bool a)
 {
     bool (*func)(char *,char *) = compare_cities; // Ascending sort
-    if (a) func = compare_cities_descending; // descending sort
+    if (!a) func = compare_cities_descending; // descending sort
     for (int i = 1; i < n; i++)
     {
         for (int j = i-1; j >= 0; j--)
@@ -67,7 +67,7 @@ int main()
 {
     printf("Insert Sort (global big cities)\n");
     printf("--------------------------------\n");
-    sort(1);
+    sort(1);//ascending sort
     printf("[Ascending order] : ");
     for (int i = 0; i < n; i++)
     {
@@ -79,7 +79,7 @@ int main()
         printf("%s-", sort_array[i]);
     }
     puts("");
-    sort(0);
+    sort(0);//descending sort
     printf("[Descending order] : ");
     for (int i = 0; i < n; i++)
     {
