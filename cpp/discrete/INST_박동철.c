@@ -22,7 +22,7 @@ char *sort_array[10] = {
 void sort(bool a)
 {
     bool (*func)(char *,char *) = compare_cities; // Ascending sort
-    if (a) func = compare_cities_descending; // descending sort
+    if (!a) func = compare_cities_descending; // descending sort
     for (int i = 1; i < n; i++)
     {
         for (int j = i-1; j >= 0; j--)
