@@ -22,21 +22,20 @@ char *sort_array[10] = {
 void sort(bool a)
 {
     bool (*func)(char *,char *) = compare_cities; // Ascending sort
-    if (!a)
-        func = compare_cities_descending; // descending sort
+    if (a) func = compare_cities_descending; // descending sort
     for (int i = 1; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
+        for (int j = i-1; j >= 0; j--)
         {
-            if (func(sort_array[i], sort_array[j]))
+            if (func(sort_array[j], sort_array[j+1]))
             {
-                switch_str(&sort_array[i], &sort_array[j]);
+                switch_str(&sort_array[j], &sort_array[j+1]);
             }
         }
     }
 }
 
-bool compare_cites(char *a, char *b)
+bool compare_cities(char *a, char *b)
 { // compare strings
     for (int i = 0; a[i] != '\0' || b[i] != '\0'; i++)
     {
@@ -66,7 +65,7 @@ void switch_str(char **a, char **b)
 
 int main()
 {
-    printf("Bubble Sort (global big cities)\n");
+    printf("Insert Sort (global big cities)\n");
     printf("--------------------------------\n");
     sort(1);
     printf("[Ascending order] : ");
