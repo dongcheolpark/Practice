@@ -23,14 +23,14 @@ char* sort_array[10] = {
 void sort(bool a)
 {
     bool (*func)(char *, char *) = compare_mammals; // Ascending sort
-    if (a) func = compare_mammals_descending; // descending sort
-    for (int i = n-1; i > 0; i--)
+    if (!a) func = compare_mammals_descending; // descending sort
+    for (int i = 1; i < n; i++)
     {
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < n - i; j++)
         {
-            if (func(sort_array[i], sort_array[j]))
+            if (func(sort_array[j], sort_array[j+1]))
             {
-                switch_str(&sort_array[i], &sort_array[j]);
+                switch_str(&sort_array[j], &sort_array[j+1]);
             }
         }
     }
