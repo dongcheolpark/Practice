@@ -5,29 +5,18 @@
 
 using namespace std;
 
-int arr[20][20];
-bool check[20] = {0,};
-int size;
-int n;
-int team1,team2;
-int res;
+short arr[1000001];
 
-void func(int num) {
-    if(size == n/2) {
-
-    }
-    for(int i = 0;i<n;i++) {
-        if(check[i]) continue;
-        
-    }
+int func2(int n) {
+    if(arr[n]) return arr[n];
+    if(n <= 2) return n;
+    int tmp = func2(n-1) + func2(n-2);
+    arr[n] = tmp%15746;
+    return arr[n];
 }
 
 int main() {
+    int n;
     scanf("%d",&n);
-    for(int i = 0;i<n;i++) {
-        for(int j = 0;j<n;j++) {
-            scanf("%d",&arr[i][j]);
-        }
-    }
-    
+    printf("%d\n",func2(n));
 }
