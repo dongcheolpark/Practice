@@ -7,29 +7,33 @@
 
 using namespace std;
 
-struct time
-{
-    int begin;
-    int end;
-    bool operator<(time &b) {
-        if(this->end == b.end) {
-            return this->begin < b.begin;
-        }
-        else return this->end < b.end;
-    }
-};
+bool arr[100][100];
+bool chk[100] = {0,};
+int n,m,res;
 
-vector<time> arr;
+void func(int a) {
+    if(chk[a]) {
+        return;
+    }
+    chk[a] = 1;
+    res++;
+    for(int i = 0;i<n;i++) {
+        if(arr[a][i]) {
+            func(i);
+        }
+    }
+}
+
 
 int main() {
-    int n;
-    scanf("%d",&n);
-    for(int i=0;i<n;i++) {
-        time tmp = NULL; 
-        scanf("%d %d",tmp.begin,tmp.end);
-        arr.push_back(tmp);
+    scanf("%d %d",&n,&m);
+    for(int i =0;i<m;i++) {
+        int a,b;
+        scanf("%d %d",&a,&b);
+        arr[a][b] = 1;
+        arr[b][a] = 1;
     }
-
-    sort(arr.begin(),arr.end());
+    func(0);
+    printf("%d",res);
 
 }
