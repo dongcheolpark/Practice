@@ -8,17 +8,6 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-int main() {
-    char a;
-    int res;
-    while(scanf("%c",a) != EOF) {
-        if(a == ' ') {
-            res++;
-        }
-    }
-    printf("%d",res);
-=======
 bool arr[100][100];
 bool chk[100] = {0,};
 int n,m,res;
@@ -42,11 +31,10 @@ int main() {
     for(int i =0;i<m;i++) {
         int a,b;
         scanf("%d %d",&a,&b);
-        arr[a][b] = 1;
-        arr[b][a] = 1;
+        arr[a-1][b-1] = 1;
+        arr[b-1][a-1] = 1;
     }
     func(0);
-    printf("%d",res);
+    printf("%d",res-1);
 
->>>>>>> a0291f0eb51564bd2d63d02534c3ab5014782e9e
 }
