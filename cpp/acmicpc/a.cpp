@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstring>
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
@@ -7,67 +8,65 @@
 
 using namespace std;
 
-class max_hip {
-private:
-    int * data;
-    int size;
-    void swap(int & a,int & b) {
-        int tmp = a;
-        a = b;
-        b = tmp;
-    }
-public:
-    max_hip(int n) {
-        data = new int[n];
-        size = 0;
-    }
-    void push(int n) {
-        data[size] = n;
-        size++;
-        for(int i = (size-1)/2;(i-1)/2>=0;i = (i-1)/2) {
-            if(data[(i-1)/2] < data[i]) {
-                swap(data[(i-1)/2],data[i]);
-            }
-            else break;
-        }
-    }
-    int top() {
-        if(size == 0) return 0;
-        return data[0]; 
-    }
-    void pop() {
-        if(size == 0) return;
-        data[0] = data[size];
-        data[size] = 0;
-        size--;
-        int n = 1; 
-        while(n < size) {
-            for(int i = n;i<n+2;i++) {
-                if(data[(i-1)/2] < data[i]) {
-                    swap(data[(i-1)/2],data[i]);
-                    n = i;
-                }
-                break;
-            }
-            n *= 2+1;
-        }
-    }
+vector<int> v;
 
-};
+int check(int num) { // 있으면 원소 위치, 없으면 -1 리턴
+    auto a = find(v.begin(),v.end(),num);
+    if(a == v.end()) {
+        return -1;
+    }
+    else return a-v.begin();
+}
+
+void empty() {
+    while(!v.empty()) {
+        v.pop_back();
+    }
+}
 
 int main() {
-    max_hip * hip;
     int n;
     scanf("%d",&n);
-    hip = new max_hip(n);
     while(n--) {
-        int tmp;
-        scanf("%d",&tmp);
-        if(tmp == 0) {
-            printf("%d\n",hip->top());
-            hip->pop();
+        char tmp[10];
+        int num;
+        scanf("%s",tmp);
+        if(!strcmp(tmp,"add")) {
+            scanf("%d",&num);
+            if(check(num) == -1) v.push_back(num);
         }
-        else hip->push(tmp);
+        else if(!strcmp(tmp,"remove")) {
+            scanf("%d",&num);
+            int a = check(num);
+            if(a != -1) {
+                v.erase(v.begin() + a);
+            }
+        }
+        else if(!strcmp(tmp,"check")) {
+            scanf("%d",&num);
+            if(check(num) == -1) {
+                puts("0");
+            }
+            else {
+                puts("1");
+            }
+        }
+        else if(!strcmp(tmp,"toggle")) {
+            scanf("%d",&num);
+            int a = check(num);
+            if(a == -1) {
+                v.push_back(num);
+            }
+            else {
+                v.erase(v.begin() + a);
+            }
+        }
+        else if(!strcmp(tmp,"all")) {
+            empty();
+            for(int i =0;i<20;i++) v[i] = i;
+        }
+        else if(!strcmp(tmp,"empty")) { 
+            empty();
+        }
     }
-    
 }
