@@ -1,72 +1,48 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <cstring>
 #include <cmath>
 #include <algorithm>
+#include <utility>
 #include <queue>
 #include <vector>
 
 using namespace std;
 
-vector<int> v;
+vector<pair<int,int> > v[100000];
 
-int check(int num) { // 있으면 원소 위치, 없으면 -1 리턴
-    auto a = find(v.begin(),v.end(),num);
-    if(a == v.end()) {
-        return -1;
+int func(int n) {
+    if(v[n].empty()) return 0;
+    int res = 0;
+    for(int i = 0;i<v[n].size();i++) {
+        pair<int,int> tmp = v[n][i];
+        int a = func(tmp.first);
+        if( a + tmp.second > res) {
+            res = a + tmp.second;
+        }
     }
-    else return a-v.begin();
-}
-
-void empty() {
-    while(!v.empty()) {
-        v.pop_back();
-    }
+    return res;
 }
 
 int main() {
     int n;
     scanf("%d",&n);
-    while(n--) {
-        char tmp[10];
+    for(int i = 0;i<n;i++) {
         int num;
-        scanf("%s",tmp);
-        if(!strcmp(tmp,"add")) {
-            scanf("%d",&num);
-            if(check(num) == -1) v.push_back(num);
-        }
-        else if(!strcmp(tmp,"remove")) {
-            scanf("%d",&num);
-            int a = check(num);
-            if(a != -1) {
-                v.erase(v.begin() + a);
-            }
-        }
-        else if(!strcmp(tmp,"check")) {
-            scanf("%d",&num);
-            if(check(num) == -1) {
-                puts("0");
-            }
-            else {
-                puts("1");
-            }
-        }
-        else if(!strcmp(tmp,"toggle")) {
-            scanf("%d",&num);
-            int a = check(num);
-            if(a == -1) {
-                v.push_back(num);
-            }
-            else {
-                v.erase(v.begin() + a);
-            }
-        }
-        else if(!strcmp(tmp,"all")) {
-            empty();
-            for(int i =0;i<20;i++) v[i] = i;
-        }
-        else if(!strcmp(tmp,"empty")) { 
-            empty();
+        scanf("%d",&num);
+        while(1) {
+            int a,b;
+            scanf("%d",&a);
+            if(a == -1) break;
+            scanf("%d",&b);
+            v[num].push_back(make_pair(a,b));
         }
     }
+    int res = 0;
+    for(int i = 1;i<=n;i++) {
+        int tmp = func(i);
+        if(tmp > res) res = tmp;
+    }
+    printf("%d",res);
 }
