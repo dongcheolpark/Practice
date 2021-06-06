@@ -3,10 +3,11 @@
 #include "sort.h"
 
 
-void select::sort(int * arr,int n) {
+template<typename T>
+void select::sort(T * arr,T n) {
     for(int i = 0;i<n;i++) {
-        int tmp = INT_MAX;
-        int a = i;
+        T tmp = INT_MAX;
+        T a = i;
         for(int j = i;j<n;j++) {
             if(tmp > arr[j]) {
                 tmp = arr[j];
