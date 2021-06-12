@@ -14,6 +14,7 @@ vector<pair<int,int> > v[100000];
 
 int func(int n) {
     if(v[n].empty()) return 0;
+
     int res = 0;
     for(int i = 0;i<v[n].size();i++) {
         pair<int,int> tmp = v[n][i];
