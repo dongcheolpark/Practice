@@ -19,7 +19,7 @@ int func(int n) {
     for(int i = 0;i<v[n].size();i++) {
         pair<int,int> tmp = v[n][i];
         int a = func(tmp.first);
-        if( a + tmp.second > res) {
+        if(a + tmp.second > res) {
             res = a + tmp.second;
         }
     }
