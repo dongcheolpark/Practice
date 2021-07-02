@@ -6,44 +6,63 @@
 #include <algorithm>
 #include <utility>
 #include <queue>
+#include <map>
 #include <vector>
 
 using namespace std;
 
-vector<pair<int,int> > v[100000];
+vector<int> arr[51];
+int list[51];
+int res,n,m,val = 0;
 
-int func(int n) {
-    if(v[n].empty()) return 0;
-
-    int res = 0;
-    for(int i = 0;i<v[n].size();i++) {
-        pair<int,int> tmp = v[n][i];
-        int a = func(tmp.first);
-        if(a + tmp.second > res) {
-            res = a + tmp.second;
+void func(int a) {
+    if(a >= m) {
+        if(val > res) {
+            res = val;
+            return;
         }
     }
-    return res;
+    int size = arr[a].size();
+    vector<int> data = arr[a];
+    bool chk = false;
+    for(int i = 0;i<size;i++) {
+        if(list[data[i]] == 1)  {
+            chk = true;
+            break;
+        }
+    }
+    if(!chk) {
+        val++;
+        for(int i = 0;i<size;i++) {
+            list[data[i]] = 1;
+        }
+        func(a+1);
+        for(int i = 0;i<size;i++) {
+            list[data[i]] = 0;
+        }
+    } 
+    func(a+1);
 }
 
 int main() {
-    int n;
-    scanf("%d",&n);
+    scanf("%d %d",&n,&m);
+    int tmp; 
+    scanf("%d",&tmp);
+    int a;
     for(int i = 0;i<n;i++) {
-        int num;
-        scanf("%d",&num);
-        while(1) {
-            int a,b;
+        list[i] = 0;
+    }
+    for(int i = 0;i<tmp;i++) {
+        scanf("%d",&a);
+        list[a] = 1;
+    }
+    for(int i = 0;i<m;i++) {
+        scanf("%d",&tmp);
+        for(int j = 0;j<tmp;j++) {
             scanf("%d",&a);
-            if(a == -1) break;
-            scanf("%d",&b);
-            v[num].push_back(make_pair(a,b));
+            arr[i].push_back(a);
         }
     }
-    int res = 0;
-    for(int i = 1;i<=n;i++) {
-        int tmp = func(i);
-        if(tmp > res) res = tmp;
-    }
+    func(0);
     printf("%d",res);
 }
