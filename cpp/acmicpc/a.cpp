@@ -9,71 +9,73 @@
 #include <map>
 #include <vector>
 
+#define INF 100
+
 using namespace std;
 
-int parent[51];
-vector<int> knowing;
-vector<vector<int> > party(50);
-int res,n,m,val = 0;
+int n,m,x;
+int graph[1000][1000];
+bool v[1000];
+int d[1000];
+int res[1000];
 
-int Find(int x) {
-    if (parent[x] == x)
-        return x;
-    return x = Find(parent[x]);
+int minindex() {
+    int min = INF;
+    int index = 0;
+    for(int i = 0;i<n;i++) {
+        if(d[i] < min && !v[i]) {
+            min = d[i];
+            index = i;
+        }
+    }
+    return index;
 }
 
-void Union(int x, int y) {
-    x = Find(x);
-    y = Find(y);
-    parent[x] = y;
-}
+int dijkstra(int start) {
+    for(int i = 0;i<n;i++) {
+        d[i] = graph[start][i];
+    }
+    v[start] = true;
 
-int answer() {
-    int res = m;
-    for(const vector<int> &people : party) {
-        bool flag = false;
-        for(const int &person : people) {
-            if(flag) break; 
-            for(const int &know : knowing) {
-                if(Find(person) == Find(know)) {
-                    flag = true;
-                    break;
+    for(int i = 0;i<n-2;i++) {
+        int current = minindex();
+        v[current] = true;
+        for(int j = 0;j<n;j++) {
+            if(!v[j]) {
+                if(d[current] + graph[current][j] < d[j]) {
+                    d[j] = d[current] + graph[current][j];
                 }
             }
         }
-        if(flag) {
-            res--;
-        }
     }
-    return res;
+    return d[x];
 }
 
 int main() {
-    scanf("%d %d",&n,&m);
-    int tmp; 
-    scanf("%d",&tmp);
-    int a;
+    scanf("%d %d %d",&n,&m,&x);
     for(int i = 0;i<n;i++) {
-        parent[i] = i;
-    }
-    for(int i = 0;i<tmp;i++) {
-        scanf("%d",&a);
-        knowing.push_back(a);
-    }
-    for(int i = 0;i<m;i++) {
-        scanf("%d",&tmp);
-        int num,prev;
-        for(int j = 0;j<tmp;j++) {
-            if(j >= 1) {
-                prev = num;
-                scanf("%d",&num);
-                Union(prev,num);
-            }
-            else {
-                scanf("%d",&num);
-            }
-            party[i].push_back(num);
+        for(int j = 0;j<n;j++) {
+            graph[i][j] = INF;
         }
     }
-    printf("%d",answer());
+    for(int i = 0;i<m;i++) {
+        int a,b,c;
+        scanf("%d %d %d",&a,&b,&c);
+        graph[a-1][b-1] = c;
+    }
+    for(int i = 0;i<n;i++) {
+        res[i] += dijkstra(i);
+        for(int i = 0;i<n;i++) v[i] = false;
+        if(i == x) {
+            for(int i = 0;i<n;i++) {
+                res[i] += d[i];
+            }
+            continue;
+        }
+    }
+    int max = 0;
+    for(int i = 0;i<n;i++) {
+        max = res[i];
+    }
+    printf("%d",max);
 }
