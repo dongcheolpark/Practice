@@ -65,10 +65,10 @@ int main() {
     }
     for(int i = 0;i<n;i++) {
         res[i] += dijkstra(i);
-        for(int i = 0;i<n;i++) v[i] = false;
+        for(int j = 0;j<n;j++) v[j] = false;
         if(i == x) {
-            for(int i = 0;i<n;i++) {
-                res[i] += d[i];
+            for(int j = 0;j<n;j++) {
+                res[j] += d[j];
             }
             continue;
         }
