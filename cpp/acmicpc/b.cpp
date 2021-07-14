@@ -22,6 +22,7 @@ int func() {
 	else if(q2.empty()) {
 		return resultCal(q2);
 	}
+	
 	int res = 0;
 	q1.pop();
 	q2.pop();
