@@ -23,6 +23,14 @@ void binary(int n, int i)
 		}
 		else printf("0");
 	}
+<<<<<<< HEAD
+=======
+	
+	int res = 0;
+	q1.pop();
+	q2.pop();
+	res = func();
+>>>>>>> 37361332b6dc70cbf21b236bf414f4b3b171a338
 }
 
 int main(void)
