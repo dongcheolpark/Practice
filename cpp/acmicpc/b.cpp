@@ -1,41 +1,31 @@
 #include <cstdio>
-#include <queue>
+#include <cstring>
+#include <cmath>
 
 using namespace std;
 
-queue<int> q1,q2;
+int s;
 
-int resultCal(queue<int> &q) {
-	int res = 0;
-	while(q.empty()) {
-		res += q.front();
-		q.pop();
+void binary(int n, int i)
+{
+	if (i == 0 && n <= 3)
+	{
+		s = 1;
+		if (n == 1) s = 0;
 	}
-	return res;
+	else s = 2;
+	for (int i = s; i >= 0; i--)
+	{
+		if (n >= pow(2, i))
+		{
+			printf("1");
+			n -= int(pow(2, i));
+		}
+		else printf("0");
+	}
 }
 
-int func() {
-	int fr1 = q1.front(),fr2 = q2.front();
-	if(q1.empty()) {
-		return resultCal(q1);
-	}
-	else if(q2.empty()) {
-		return resultCal(q2);
-	}
-	int res = 0;
-	q1.pop();
-	q2.pop();
-	res = func();
-}
-
-int main() {
-	int n,tmp;
-	for(int i = 0;i<n;i++) {
-		scanf("%d",&tmp);	
-		q1.push(tmp);
-	}
-	for(int i = 0;i<n;i++) {
-		scanf("%d",&tmp);	
-		q2.push(tmp);
-	}
+int main(void)
+{
+	
 }
