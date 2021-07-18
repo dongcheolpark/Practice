@@ -1,19 +1,24 @@
 #include <cstdio>
-#include <cstring>
-#include <climits>
+#include <string>
+#include <algorithm>
+#include <map>
 #include <vector>
 
 using namespace std;
-
-vector<int> v1,v2;
+vector<int> v;
 
 int main() {
-	int n,m;
+	int n;
 	scanf("%d",&n);
 	for(int i = 0;i<n;i++) {
+		int tmp;
+		scanf("%d",&tmp);
+		v.push_back(tmp);
 	}
-	scanf("%d",&m);
-	for(int i = 0;i<m;i++) {
+	sort(v.begin(),v.end());
+	int res;
+	for(int i = 0;i<n;i++) {
+		res += (n-i)*v[i];
 	}
-	return 0;
+	printf("%d",res);
 }
