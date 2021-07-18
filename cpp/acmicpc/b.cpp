@@ -1,39 +1,27 @@
 #include <cstdio>
 #include <cstring>
+#include <utility>
 #include <cmath>
 
 using namespace std;
 
-int s;
-
-void binary(int n, int i)
-{
-	if (i == 0 && n <= 3)
-	{
-		s = 1;
-		if (n == 1) s = 0;
-	}
-	else s = 2;
-	for (int i = s; i >= 0; i--)
-	{
-		if (n >= pow(2, i))
-		{
-			printf("1");
-			n -= int(pow(2, i));
+int main() {
+	int n;
+	scanf("%d",&n);
+	while (n--) {
+		double x1,x2,y1,y2,r1,r2;
+		scanf("%lf %lf %lf %lf %lf %lf",&x1,&y1,&r1,&x2,&y2,&r2);
+		float r = sqrt(pow(x2-x1,2) + pow(y2-y1,2));
+		printf("%lf %lf\n",r,abs(r2-r1));
+		if(r < abs(r2-r1)) {
+			puts("0");
 		}
-		else printf("0");
+		else if (r > abs(r2-r1)) {
+			puts("2");
+		}
+		else {
+			puts("1");
+		}
 	}
-<<<<<<< HEAD
-=======
-	
-	int res = 0;
-	q1.pop();
-	q2.pop();
-	res = func();
->>>>>>> 37361332b6dc70cbf21b236bf414f4b3b171a338
-}
-
-int main(void)
-{
-	
+	return 0;
 }
