@@ -1,36 +1,19 @@
 #include <cstdio>
 #include <cstring>
-#include <cmath>
+#include <climits>
+#include <vector>
 
 using namespace std;
 
-int s;
+vector<int> v1,v2;
 
-void binary(int n, int i)
-{
-	if (i == 0 && n <= 3)
-	{
-		s = 1;
-		if (n == 1) s = 0;
+int main() {
+	int n,m;
+	scanf("%d",&n);
+	for(int i = 0;i<n;i++) {
 	}
-	else s = 2;
-	for (int i = s; i >= 0; i--)
-	{
-		if (n >= pow(2, i))
-		{
-			printf("1");
-			n -= int(pow(2, i));
-		}
-		else printf("0");
+	scanf("%d",&m);
+	for(int i = 0;i<m;i++) {
 	}
-	
-	int res = 0;
-	q1.pop();
-	q2.pop();
-	res = func();
-}
-
-int main(void)
-{
-	
+	return 0;
 }

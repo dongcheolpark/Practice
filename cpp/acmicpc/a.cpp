@@ -9,73 +9,60 @@
 #include <map>
 #include <vector>
 
-#define INF 100
-
 using namespace std;
 
-int n,m,x;
-int graph[1000][1000];
-bool v[1000];
-int d[1000];
-int res[1000];
+vector<int> arr[51];
+int list[51];
+int res,n,m,val = 0;
 
-int minindex() {
-    int min = INF;
-    int index = 0;
-    for(int i = 0;i<n;i++) {
-        if(d[i] < min && !v[i]) {
-            min = d[i];
-            index = i;
+void func(int a) {
+    if(a >= m) {
+        if(val > res) {
+            res = val;
+            return;
         }
     }
-    return index;
-}
-
-int dijkstra(int start) {
-    for(int i = 0;i<n;i++) {
-        d[i] = graph[start][i];
-    }
-    v[start] = true;
-
-    for(int i = 0;i<n-2;i++) {
-        int current = minindex();
-        v[current] = true;
-        for(int j = 0;j<n;j++) {
-            if(!v[j]) {
-                if(d[current] + graph[current][j] < d[j]) {
-                    d[j] = d[current] + graph[current][j];
-                }
-            }
+    int size = arr[a].size();
+    vector<int> data = arr[a];
+    bool chk = false;
+    for(int i = 0;i<size;i++) {
+        if(list[data[i]] == 1)  {
+            chk = true;
+            break;
         }
     }
-    return d[x];
+    if(!chk) {
+    } 
+        val++;
+        for(int i = 0;i<size;i++) {
+            list[data[i]] = 1;
+        }
+        func(a+1);
+        for(int i = 0;i<size;i++) {
+            list[data[i]] = 0;
+        }
+    func(a+1);
 }
 
 int main() {
-    scanf("%d %d %d",&n,&m,&x);
+    scanf("%d %d",&n,&m);
+    int tmp; 
+    scanf("%d",&tmp);
+    int a;
     for(int i = 0;i<n;i++) {
-        for(int j = 0;j<n;j++) {
-            graph[i][j] = INF;
-        }
+        list[i] = 0;
+    }
+    for(int i = 0;i<tmp;i++) {
+        scanf("%d",&a);
+        list[a] = 1;
     }
     for(int i = 0;i<m;i++) {
-        int a,b,c;
-        scanf("%d %d %d",&a,&b,&c);
-        graph[a-1][b-1] = c;
-    }
-    for(int i = 0;i<n;i++) {
-        res[i] += dijkstra(i);
-        for(int j = 0;j<n;j++) v[j] = false;
-        if(i == x) {
-            for(int j = 0;j<n;j++) {
-                res[j] += d[j];
-            }
-            continue;
+        scanf("%d",&tmp);
+        for(int j = 0;j<tmp;j++) {
+            scanf("%d",&a);
+            arr[i].push_back(a);
         }
     }
-    int max = 0;
-    for(int i = 0;i<n;i++) {
-        max = res[i];
-    }
-    printf("%d",max);
+    func(0);
+    printf("%d",res);
 }
