@@ -1,33 +1,58 @@
 #include <iostream>
 #include <algorithm>
+#include <map>
+#include <cmath>
+#include <string>
 #include <utility>
 #include <vector>
 
 using namespace std;
 
-int two(int x) {
-	int res = 0;
-	for(;!(x%2);x/=2) {
-		res++;
+int * tree, * arr;
+
+int init(int i,int s,int e) {
+	if(s == e) {
+		tree[i] = arr[s];
 	}
-	return res;
+	else {
+		tree[i] = init(i*2+1, s, (s+e)/2) + init(i*2 + 2, (s+e)/2 + 1, e);
+	}
+	return tree[i];
 }
 
-int five(int x) {
-	int res = 0;
-	for(;!(x%5);x/=5) {
-		res++;
+int sum(int i,int s,int e,int l,int r) {
+	if(s > r || e < l) {
+		return 0;
 	}
-	return res;
+	else if(s >= l && e <= r) {
+		return tree[i];
+	}
+	else {
+		int m = (s + e)/2;
+		return sum(2*i + 1, s, m ,l,r) + sum(2*i+2,m+1,e,l,r);
+	}
 }
 
 int main() {
-	int n;
-	scanf("%d",&n);
-	int a = 0,b = 0;
-	for(int i = 1;i<=n;i++) {
-		a += two(i);
-		b += five(i);
+	int n,m;
+	scanf("%d %d",&n,&m);
+	int h = ceil(log2(n));
+	int tree_size = 1 << (h+1);
+
+	arr = new int[n];
+	tree = new int[tree_size];
+
+	for(int i = 0;i<n;i++) {
+		scanf("%d",arr+i);
 	}
-	printf("%d",min(a,b));
+	init(0,0,n-1);
+
+	while (m--)
+	{
+		int a,b;
+		scanf("%d %d",&a,&b);
+		printf("%d\n",sum(0,0,n-1,a-1,b-1));
+	}
+	
 }
+
