@@ -8,51 +8,50 @@
 
 using namespace std;
 
-int * tree, * arr;
+int n,res1 = 0,res2 = 0,res3 = 0;
+int ** arr;
 
-int init(int i,int s,int e) {
-	if(s == e) {
-		tree[i] = arr[s];
+int check(int x,int y, int num) {
+	int a = arr[x][y];
+	for(int i = x;i<x+num;i++) {
+		for(int j = y;j<y+num;j++) {
+			if(arr[i][j] != a) {
+				a = 2;
+				goto RESULT;
+			}
+		}
 	}
-	else {
-		tree[i] = init(i*2+1, s, (s+e)/2) + init(i*2 + 2, (s+e)/2 + 1, e);
-	}
-	return tree[i];
+	RESULT:
+	return a;
 }
 
-int sum(int i,int s,int e,int l,int r) {
-	if(s > r || e < l) {
-		return 0;
+void func(int x,int y,int num) {
+	int a = check(x,y,num);
+	if(a != 2 || num == 1) {
+		if(a == -1) res1++;
+		else if(a == 0) res2++;
+		else if(a == 1) res3++;
+		return;
 	}
-	else if(s >= l && e <= r) {
-		return tree[i];
-	}
-	else {
-		int m = (s + e)/2;
-		return sum(2*i + 1, s, m ,l,r) + sum(2*i+2,m+1,e,l,r);
-	}
+	for(int i = x;i<x+num;i+=num/3) {
+		for(int j = y;j<y+num;j+=num/3) {
+			func(i,j,num/3);	
+		}
+	} 
 }
 
 int main() {
-	int n,m;
-	scanf("%d %d",&n,&m);
-	int h = ceil(log2(n));
-	int tree_size = 1 << (h+1);
-
-	arr = new int[n];
-	tree = new int[tree_size];
-
+	scanf("%d",&n);
+	arr = new int*[n];
 	for(int i = 0;i<n;i++) {
-		scanf("%d",arr+i);
+		arr[i] = new int[n];
 	}
-	init(0,0,n-1);
-
-	while (m--)
-	{
-		int a,b;
-		scanf("%d %d",&a,&b);
-		printf("%d\n",sum(0,0,n-1,a-1,b-1));
+	for(int i = 0;i<n;i++) {
+		for(int j = 0;j<n;j++) {
+			scanf("%d",&arr[i][j]);
+		}
 	}
-	
+	func(0,0,n);
+	printf("%d\n%d\n%d",res1,res2,res3);
 }
 
