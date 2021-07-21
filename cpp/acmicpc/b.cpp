@@ -8,49 +8,37 @@
 
 using namespace std;
 
-int arr[64][64];
+int arr[10];
 
-int check(int x,int y,int n) {
-	int tmp = arr[x][y];
-	for(int i = x;i<x+n;i++) {
-		for(int j = y;j<y+n;j++) {
-			if(tmp != arr[i][j]) return -1;
-		}
+int num_size(int a) {
+	if(a == 0) {
+		if(arr[0]) return 1;
+		return -1;
 	}
-	return tmp;
-}
-
-void func(int x,int y,int n) {
-	if(n == 1) {
-		printf("%d",arr[x][y]);
-		return;
+	int i = 0;
+	while(a) {
+		if(!arr[a%10]) return -1;
+		a/=10;
+		i++;
 	}
-	int a = check(x,y,n);
-	if(a != -1) {
-		printf("%d",a);
-		return;
-	}
-	printf("(");
-	for(int i = x;i<x+n;i+=n/2) {
-		for(int j = y;j<y+n;j+=n/2) {
-			func(i,j,n/2);
-		}
-	}
-	printf(")");
+	return i;
 }
 
 int main() {
-	int n;
-	scanf("%d",&n);
-	for(int i = 0;i<n;i++) {
-		char ch[n+1];
-		scanf("%s",ch);
-		for(int j = 0;j<n;j++) {
-			arr[i][j] = ch[j] - '0';
-		}
+	int n,m;
+	scanf("%d %d",&n,&m);
+	for(int i = 0;i<10;i++) arr[i] = 1;
+	for(int i = 0;i<m;i++) {
+		int tmp;
+		scanf("%d",&tmp);
+		arr[tmp] = 0;
 	}
-
-	func(0,0,n);
-	
-	return 0;
+	int min = abs(n-100);
+	for(int i = 0;i<=1000000;i++) {
+		int size = num_size(i);
+		if(size == -1) continue;
+		int a = size + abs(n-i);
+		if(min > a) min = a;
+	}
+	printf("%d",min);
 }
