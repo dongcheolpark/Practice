@@ -1,44 +1,64 @@
-#include <cstdio>
+#include <iostream>
 #include <algorithm>
 #include <cmath>
-#include <cstring>
+#include <string>
 #include <climits>
 #include <utility>
-#include <vector>
+#include <list>
 
 using namespace std;
 
 int arr[10];
 
-int num_size(int a) {
-	if(a == 0) {
-		if(arr[0]) return 1;
-		return -1;
-	}
-	int i = 0;
-	while(a) {
-		if(!arr[a%10]) return -1;
-		a/=10;
-		i++;
-	}
-	return i;
-}
-
 int main() {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+
 	int n,m;
-	scanf("%d %d",&n,&m);
-	for(int i = 0;i<10;i++) arr[i] = 1;
-	for(int i = 0;i<m;i++) {
-		int tmp;
-		scanf("%d",&tmp);
-		arr[tmp] = 0;
+	cin>>n;
+	while(n--) {
+		bool reverse = false;
+		string order;
+		cin>>order;
+		cin>>m;
+		m = order.size();
+		string str;
+		list<int> li;
+		cin>>str;
+		for(int i = 0;i<str.size();i++) {
+			if(str[i] >= '0' && str[i] <='9') {
+				li.push_back(str[i]-'0');
+			}
+		}
+		bool chk = false;
+		for(int i = 0;i<m;i++) {
+			if(order[i] == 'R') {
+				reverse = true;
+			}
+			else {
+				if(reverse) {
+					li.pop_back();
+				}
+				else {
+					if(li.empty()) {
+						chk = true;
+						cout<<"error"<<"\n";
+						break;
+					}
+					li.pop_front();
+				}
+			}
+		}
+		if(chk) continue;
+		else {
+			cout<<"[";
+			if(reverse) {
+				for(auto i = li.begin();i != li.end();i++) {
+				}
+			}
+			else {
+
+			}
+		}
 	}
-	int min = abs(n-100);
-	for(int i = 0;i<=1000000;i++) {
-		int size = num_size(i);
-		if(size == -1) continue;
-		int a = size + abs(n-i);
-		if(min > a) min = a;
-	}
-	printf("%d",min);
 }
