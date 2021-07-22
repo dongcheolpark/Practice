@@ -25,15 +25,26 @@ int main() {
 		string str;
 		list<int> li;
 		cin>>str;
+		int tmp = 0,chk = false;
 		for(int i = 0;i<str.size();i++) {
 			if(str[i] >= '0' && str[i] <='9') {
-				li.push_back(str[i]-'0');
+				tmp *= 10; 
+				tmp += str[i]-'0';
+				chk = true;
+			}
+			else {
+				if(chk) {
+					li.push_back(tmp);
+					tmp = 0;
+					chk = false;
+				}
 			}
 		}
 		bool chk = false;
 		for(int i = 0;i<m;i++) {
 			if(order[i] == 'R') {
-				reverse = true;
+				if(reverse == true) reverse = false;
+				else reverse = true;
 			}
 			else {
 				if(reverse) {
@@ -52,13 +63,23 @@ int main() {
 		if(chk) continue;
 		else {
 			cout<<"[";
-			if(reverse) {
+			if(!reverse) {
 				for(auto i = li.begin();i != li.end();i++) {
+					cout<<*i;
+					if(i != --li.end()) {
+						cout<<',';
+					}
 				}
 			}
 			else {
-
+				for(auto i = li.rbegin();i != li.rend();i++) {
+					cout<<*i;
+					if(i != --li.rend()) {
+						cout<<',';
+					}
+				}
 			}
+			cout<<"]"<<'\n';
 		}
 	}
 }
