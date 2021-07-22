@@ -33,7 +33,8 @@ int main() {
 		bool chk = false;
 		for(int i = 0;i<m;i++) {
 			if(order[i] == 'R') {
-				reverse = true;
+				if(reverse == true) reverse = false;
+				else reverse = true;
 			}
 			else {
 				if(reverse) {
@@ -52,13 +53,23 @@ int main() {
 		if(chk) continue;
 		else {
 			cout<<"[";
-			if(reverse) {
+			if(!reverse) {
 				for(auto i = li.begin();i != li.end();i++) {
+					cout<<*i;
+					if(i != --li.end()) {
+						cout<<',';
+					}
 				}
 			}
 			else {
-
+				for(auto i = li.rbegin();i != li.rend();i++) {
+					cout<<*i;
+					if(i != --li.rend()) {
+						cout<<',';
+					}
+				}
 			}
+			cout<<"]"<<'\n';
 		}
 	}
 }
