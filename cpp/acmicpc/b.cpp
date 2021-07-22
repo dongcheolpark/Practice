@@ -16,6 +16,7 @@ int main() {
 
 	int n,m;
 	cin>>n;
+	list<int> li;
 	while(n--) {
 		bool reverse = false;
 		string order;
@@ -23,7 +24,7 @@ int main() {
 		cin>>m;
 		m = order.size();
 		string str;
-		list<int> li;
+		li.clear();
 		cin>>str;
 		int tmp = 0,chk = false;
 		for(int i = 0;i<str.size();i++) {
@@ -40,7 +41,8 @@ int main() {
 				}
 			}
 		}
-		bool chk = false;
+		chk = false;
+		try {
 		for(int i = 0;i<m;i++) {
 			if(order[i] == 'R') {
 				if(reverse == true) reverse = false;
@@ -60,9 +62,18 @@ int main() {
 				}
 			}
 		}
+		}
+		catch(int a) {
+			chk = true;
+			cout<<"error"<<"\n";
+		}
 		if(chk) continue;
 		else {
 			cout<<"[";
+			if(li.empty()) {
+				cout<<"0]";
+				continue;
+			}
 			if(!reverse) {
 				for(auto i = li.begin();i != li.end();i++) {
 					cout<<*i;
