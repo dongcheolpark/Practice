@@ -1,4 +1,4 @@
-./cpp/test/.vscode
-./cpp/acmicpc/.vscode
-.vscode
+cpp/test/.vscode
+cpp/acmicpc/.vscode
+vscode
 
