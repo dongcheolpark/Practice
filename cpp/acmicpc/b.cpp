@@ -25,9 +25,19 @@ int main() {
 		string str;
 		list<int> li;
 		cin>>str;
+		int tmp = 0,chk = false;
 		for(int i = 0;i<str.size();i++) {
 			if(str[i] >= '0' && str[i] <='9') {
-				li.push_back(str[i]-'0');
+				tmp *= 10; 
+				tmp += str[i]-'0';
+				chk = true;
+			}
+			else {
+				if(chk) {
+					li.push_back(tmp);
+					tmp = 0;
+					chk = false;
+				}
 			}
 		}
 		bool chk = false;
