@@ -7,34 +7,36 @@
 
 using namespace std;
 
-list<int> res;
 
-void print() {
-    char tmp[4] = {'D','S','L','R'};
-    for(auto item = res.begin();item!=res.end();item++) {
-        cout<<tmp[*item];
+int gcd(int a, int b) {
+    while (b != 0) {
+        int r = a % b;
+        a = b;
+        b = r;
     }
-    cout<<"\n";
+    return a;
 }
-
-bool func(int n,int m) {
-    auto * tmp = new list<int>;
-    if(n == m) {
-        
-    }
-    int a = n*2%10000;
-    
+ 
+int lcm(int a, int b) {
+    return a * b / gcd(a, b);
 }
-
-int main() {
-    cin.tie(NULL);
-    ios::sync_with_stdio(false);
-    int n;
-    while(n--) {
-        int a,b;
-        cin>>a>>b;
-        func(a,b);
-        print();
-        res.clear();
+ 
+int main(void)
+{
+    int t, m, n, x, y, i, j;
+    scanf("%d", &t);
+    for (i = 0; i < t; i++) {
+        scanf("%d %d %d %d", &m, &n, &x, &y);
+        int limit = lcm(m, n);
+        for (j = x; j <= limit; j += m) {
+            int temp = (j%n == 0) ? n : j % n;
+            if (temp == y) {
+                printf("%d\n", j);
+                break;
+            }
+        }
+        if (j > limit)
+            printf("-1\n");
     }
+    return 0;
 }
