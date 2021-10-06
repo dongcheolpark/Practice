@@ -1,36 +1,16 @@
-#include <iostream>
+#include <stdio.h>
+#include <time.h>
 
-using namespace std;
-
-class animal {
-public :
-	virtual void sound() {};
-
-};
-class Dog : public animal {
-public:
-	void sound() {
-		cout<<"bark"<<endl;
-	}
-};
-class Cat : public animal {
-public:
-	void sound() {
-		cout<<"Meow"<<endl;
-	}
-};
+char * wday[7] = {"월","화","수","목","금","토","일"};
 
 int main() {
-	Dog A;
-	Cat B;
-	animal * C = new Dog();
+	struct tm *t;
 
-	C->sound();
+	time_t now;
 
-	A.sound();
-	B.sound();
-	return 0;
+	now = time(NULL);
+
+	t = localtime(&now);
+
+	printf("오늘은 %d년 %d월 %d일 %s요일입니다.",t->tm_year + 1900, t->tm_mon,t->tm_mday,wday[t->tm_wday]);
 }
-
-
-
