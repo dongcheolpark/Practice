@@ -1,76 +1,145 @@
 1)
 #include <stdio.h>
-#include <math.h>
-
-void func_addr(void * f);
-
-int main(void)
-
-{
-
-	func_addr(cos);
-
-	func_addr(main);
-
-	return 0;
-
-}
-
-void func_addr(void * f)
-{
-
-	if(f == cos)
-
-	printf("cos() 함수 주소 :%p\n", f);
-
-	else
-
-	printf("함수의 주소:%p\n", f);
-
-}
-
-2)
-#include <stdio.h>
-#include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
 
-int compare(const void *a,const void *b) {
-	return strcmp(*(char **)a,*(char **)b);
+#define N 10
+
+typedef struct student
+{
+	char * name;
+	char * email;
+	char * phone;
+}student;
+
+student data[10];
+
+void print_student(int i) {
+	printf("name : %s\nemail : %s\nphone : %s\n\n",data[i].name,data[i].email,data[i].phone);
 }
 
+void search_name(char * name) {
+	for(int i = 0;i<N;i++) {
+		if(strcmp(name,data[i].name) == 0) {
+			print_student(i);
+		}
+	}
+}
+void search_all() {
+	for(int i = 0;i<N;i++) {
+		print_student(i);
+	}
+
+}
+
+
 int main() {
-	char * str[10];
-	for(int i = 0;i<10;i++) {
-		char * tmp = (char *)malloc(sizeof(char) * 20);
+	for(int i = 0;i<N;i++) {
+		char * tmp;
+		tmp = (char *)malloc(sizeof(char)*41);
 		scanf("%s",tmp);
-		str[i] = tmp;
+		data[i].name = tmp; 
+		tmp = (char *)malloc(sizeof(char)*41);
+		scanf("%s",tmp);
+		data[i].email = tmp; 
+		tmp = (char *)malloc(sizeof(char)*41);
+		scanf("%s",tmp);
+		data[i].phone = tmp; 
 	}
-	qsort(str,sizeof(str) / sizeof(str[0]),sizeof(str[0]),compare);
-	for(int i = 0;i<10;i++) {
-		printf("%s ",str[i]);
+
+	puts("1. 이름검색, 2.전체검색");
+	int a;
+	scanf("%d",&a);
+	if(a == 1) {
+		char tmp[40];
+		printf("이름 :");
+		scanf("%s",tmp);
+		search_name(tmp);
 	}
+	else if(a== 2) {
+		search_all();
+	}
+	else {
+		puts("잘못입력하셨습니다.");
+	}
+	return 0;
+}
+
+2) 
+#include <stdio.h>
+
+typedef struct info{
+	char name[20]; // 이름
+	double score; // 평점 평균
+	int credit; // 취득 학점
+}info;
+
+void input_data(info * students,int n) {
+	for(int i = 0;i<n;i++) {
+		scanf("%s %lf %d",students[i].name,&students[i].score,&students[i].credit);
+	}
+}
+
+void scholarship(info * students,int n) {
+	for(int i = 0;i<n;i++) {
+		if(students[i].score >= 4.3 && students[i].credit >= 20) {
+			printf("name : %s\nscore: %.1f\ncredit : %d\n\n",students[i].name,students[i].score,students[i].credit);
+		}
+	}
+}
+
+int main(void)
+{
+	info students[5]; // 5명의 학생
+	input_data(students, 5); // 이름, 평점 평균, 취득 학점을 입력받는 함수
+	scholarship(students, 5); // 장학생의 이름, 평점 평균, 취득 학점을 출력하는 함수
+	return 0;
 }
 
 3)
 
 #include <stdio.h>
-#include <time.h>
 
-#define day(X) X/12?"오후":"오전"
+enum cost_value {dollar,won};
 
-char * wday[7] = {"월","화","수","목","금","토","일"};
+typedef union cost_va {
+	double dollar;
+	int won;
+}const_va;
+
+typedef struct product
+{
+	char * name;
+	const_va cost;
+	enum cost_value cost_v;
+}product;
 
 
 int main() {
-	struct tm *t;
-
-	time_t now;
-
-	now = time(NULL);
-
-	t = localtime(&now);
-
-	printf("오늘은 %d년 %d월 %d일 %s요일입니다.\n",t->tm_year + 1900, t->tm_mon+1,t->tm_mday,wday[t->tm_wday]);
-	printf("현재 시간은 %s %d시 %d분 %d초입니다.",day(t->tm_hour),t->tm_hour,t->tm_min,t->tm_sec);
+	const product product_list[6] = {
+		{"pmp",{.won = 600000,},won},
+		{"mp3",{.won = 153000,},won},
+		{"smartphone",{.dollar = 520.40},dollar},
+		{"tv",{.dollar = 430.20},dollar},
+		{"navigator",{.won = 350000,},won},
+		{"laptop",{.dollar = 1950.00},dollar}
+	};
+	int cost,exchange;
+	puts("보유금액과 환율을 입력하세요.");
+	printf("보유금액 : ");
+	scanf("%d",&cost);
+	printf("환율 : ");
+	scanf("%d",&exchange);
+	for(int i = 0;i<6;i++) {
+		int won;
+		if(product_list[i].cost_v == dollar) {
+			won = (int)(product_list[i].cost.dollar * exchange);
+		}
+		else {
+			won = product_list[i].cost.won;
+		}
+		if(won < cost) {
+			printf("%s %d원\n",product_list[i].name,won);
+		}
+	}
 }
