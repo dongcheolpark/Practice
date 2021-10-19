@@ -1,29 +1,12 @@
 #include <stdio.h>
-#include <math.h>
 
-void func_addr(void * f);
+struct a {
+	int x;
+	int y;
+};
 
-int main(void)
-
-{
-
-	func_addr(cos);
-
-	func_addr(main);
-
-	return 0;
-
-}
-
-void func_addr(void * f)
-{
-
-	if(f == cos)
-
-	printf("cos() 함수 주소 :%p\n", f);
-
-	else
-
-	printf("함수의 주소:%p\n", f);
-
+int main() {
+	struct a i = {1,1};
+	struct a j = i;
+	printf("%d %d",j.x,j.y);
 }
