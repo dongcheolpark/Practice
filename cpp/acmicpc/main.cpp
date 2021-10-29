@@ -9,47 +9,38 @@
 
 using namespace std;
 
+int arr[101],v[101];
 
 int main() {
-	int n,m,start;
-	cin.tie(NULL);
-
-	cin>>n>>m>>start;
-	start--;
-	int d[n];
-	priority_queue<pair<int,int> > pq;
-	vector<pair<int,int> > a[n];
-	for(int i = 0;i<m;i++) {
-		int s,e,l;
-		cin>>s>>e>>l;
-		a[s-1].push_back(make_pair(l,e-1));
+	int n,m;
+	scanf("%d %d",&n,&m);
+	for(int i = 0;i<101;i++) {
+		arr[i] = i;
+		v[i] = -1;
 	}
-	for(int i = 0;i<n;i++) {
-		d[i] = INF;
+	for(int i = 0;i<n+m;i++) {
+		int a,b;
+		cin>>a>>b;
+		arr[a] = b;
 	}
-	d[start] = 0;
-	pq.push(make_pair(start,0));
-	while(!pq.empty()) {
-		int current = pq.top().second;
-		int distance = -pq.top().first;
-		pq.pop();
-		if(d[current] < distance) continue; 
-		for(int i = 0;i < a[current].size();i++) {
-			int next = a[current][i].second;
-			int next_distance = distance + a[current][i].first;
-			if(next_distance < d[next]) {
-				d[next] = next_distance;
-				pq.push(make_pair(-next_distance,next));
+	//bfs
+	queue<int> q;
+	q.push(1);
+	v[1] = 0;
+	while (!q.empty()) {
+		int x = q.front();
+		q.pop();
+		for (int i = 1; i <= 6; i++) {
+			int y = x + i;
+			if (y > 100) continue;
+			y = arr[y]; 
+			if (v[y] == -1) { 
+				v[y] = v[x] + 1;
+				q.push(y);
 			}
 		}
 	}
-
-	for(int i = 0;i<n;i++) {
-		if(d[i] == INF) {
-			cout<<"INF\n";
-		}
-		else {
-			cout<<d[i]<<'\n';
-		} 
-	}
+	cout<<arr[100];
+	return 0;
 }
+

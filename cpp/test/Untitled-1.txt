@@ -1,145 +1,24 @@
-1)
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define N 10
-
-typedef struct student
-{
-	char * name;
-	char * email;
-	char * phone;
-}student;
-
-student data[10];
-
-void print_student(int i) {
-	printf("name : %s\nemail : %s\nphone : %s\n\n",data[i].name,data[i].email,data[i].phone);
-}
-
-void search_name(char * name) {
-	for(int i = 0;i<N;i++) {
-		if(strcmp(name,data[i].name) == 0) {
-			print_student(i);
-		}
+1) 매크로함수의 인자는 상수로 처리되기 때문에 float형 숫자가 아니면 float인지 int인지 구별할 수 없다. 결과가 같게 나오려면 형변환을 해주어야 할 것이다.
+2) #define PRN_3(x,y,z) printf(#x" : %.1f,"#y" : %.1f,"#z" : %.1f",x,y,z);
+3) a = AREA(i++);를
+   a = AREA(i);
+   i++;로 바꾸어 주면 된다.
+4) #define PRN(x) printf(#x"\n"#x);로 바꾸어 주면 된다.
+5) int main() {
+        char a,b;
+        a = getch();
+        printf("%c\n",a);
+        b = getch();
+        printf("%c\n",b);
+        if(a == b) puts("Good");
+        else puts("Bad");
 	}
-}
-void search_all() {
-	for(int i = 0;i<N;i++) {
-		print_student(i);
+	를 코드 아래에 작성한다.
+6) int main() {
+        system("ls");
+        printf("몇 초 후에 화면을 지울까요? : ");
+        int a = getch() - '0';
+        printf("%d\n",a);
+        sleep(a);
+        return 0;
 	}
-
-}
-
-
-int main() {
-	for(int i = 0;i<N;i++) {
-		char * tmp;
-		tmp = (char *)malloc(sizeof(char)*41);
-		scanf("%s",tmp);
-		data[i].name = tmp; 
-		tmp = (char *)malloc(sizeof(char)*41);
-		scanf("%s",tmp);
-		data[i].email = tmp; 
-		tmp = (char *)malloc(sizeof(char)*41);
-		scanf("%s",tmp);
-		data[i].phone = tmp; 
-	}
-
-	puts("1. 이름검색, 2.전체검색");
-	int a;
-	scanf("%d",&a);
-	if(a == 1) {
-		char tmp[40];
-		printf("이름 :");
-		scanf("%s",tmp);
-		search_name(tmp);
-	}
-	else if(a== 2) {
-		search_all();
-	}
-	else {
-		puts("잘못입력하셨습니다.");
-	}
-	return 0;
-}
-
-2) 
-#include <stdio.h>
-
-typedef struct info{
-	char name[20]; // 이름
-	double score; // 평점 평균
-	int credit; // 취득 학점
-}info;
-
-void input_data(info * students,int n) {
-	for(int i = 0;i<n;i++) {
-		scanf("%s %lf %d",students[i].name,&students[i].score,&students[i].credit);
-	}
-}
-
-void scholarship(info * students,int n) {
-	for(int i = 0;i<n;i++) {
-		if(students[i].score >= 4.3 && students[i].credit >= 20) {
-			printf("name : %s\nscore: %.1f\ncredit : %d\n\n",students[i].name,students[i].score,students[i].credit);
-		}
-	}
-}
-
-int main(void)
-{
-	info students[5]; // 5명의 학생
-	input_data(students, 5); // 이름, 평점 평균, 취득 학점을 입력받는 함수
-	scholarship(students, 5); // 장학생의 이름, 평점 평균, 취득 학점을 출력하는 함수
-	return 0;
-}
-
-3)
-
-#include <stdio.h>
-
-enum cost_value {dollar,won};
-
-typedef union cost_va {
-	double dollar;
-	int won;
-}const_va;
-
-typedef struct product
-{
-	char * name;
-	const_va cost;
-	enum cost_value cost_v;
-}product;
-
-
-int main() {
-	const product product_list[6] = {
-		{"pmp",{.won = 600000,},won},
-		{"mp3",{.won = 153000,},won},
-		{"smartphone",{.dollar = 520.40},dollar},
-		{"tv",{.dollar = 430.20},dollar},
-		{"navigator",{.won = 350000,},won},
-		{"laptop",{.dollar = 1950.00},dollar}
-	};
-	int cost,exchange;
-	puts("보유금액과 환율을 입력하세요.");
-	printf("보유금액 : ");
-	scanf("%d",&cost);
-	printf("환율 : ");
-	scanf("%d",&exchange);
-	for(int i = 0;i<6;i++) {
-		int won;
-		if(product_list[i].cost_v == dollar) {
-			won = (int)(product_list[i].cost.dollar * exchange);
-		}
-		else {
-			won = product_list[i].cost.won;
-		}
-		if(won < cost) {
-			printf("%s %d원\n",product_list[i].name,won);
-		}
-	}
-}
