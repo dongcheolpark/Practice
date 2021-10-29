@@ -1,7 +1,16 @@
 #include <stdio.h>
 
+struct a
+{
+	int x;
+	int y;
+	union {
+		int k;
+		double dollar;
+	};
+};
+
+
 int main() {
-	int i,*p = &i;
-	i = (int)p;
-	printf("%d",i);
+	struct a b = {,,.dollar=99.99};
 }
