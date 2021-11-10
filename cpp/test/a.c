@@ -1,8 +1,23 @@
 #include <stdio.h>
-int calculateDaysBetweenDates(int a,int b) {
 
-}
+int main(void)
 
-int main() {
-	
+{
+
+FILE *ofp;
+
+ofp = fopen("myfile", "w");
+
+fprintf(ofp, "test");
+
+fflush(ofp);
+
+getchar(); // 임의의 문자 입력을 기다림.
+
+//fclose(ofp);
+
+getchar(); // 임의의 문자 입력을 기다림.
+
+return 0;
+
 }
