@@ -14,7 +14,7 @@ int main() {
 			asm("nop");
 			res[i][j] = 0;
 			for(int k = 0;k<N;k++) {
-				res[i][j] += arr[i][k] * arr[k][j];
+				*(*res+i*4+j) += arr[i][k] * arr[k][j];
 			}
 		}
 	}

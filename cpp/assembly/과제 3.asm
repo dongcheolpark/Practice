@@ -21,7 +21,7 @@ mov eax, dword ptr[ebp-0x4] i
 lea ecx, dword ptr[eax*4]
 mov eax, dword ptr[ebp-0x8] j
 add ecx, eax
-fld dword ptr[ecx+ecx*4]
+fld dword ptr[ebx+ecx*4]
 mov eax, dword ptr[ebp-0x4] i
 lea ecx, dword ptr[eax*4]
 mov eax, dword ptr[ebp-0xc] k
